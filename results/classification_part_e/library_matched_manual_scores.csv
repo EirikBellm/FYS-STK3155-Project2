@@ -1,0 +1,2 @@
+id,family,folds,macro_f1,macro_f1_fold_sd,accuracy,accuracy_fold_sd,cross_entropy,cross_entropy_fold_sd,train_macro_f1,train_cross_entropy,best_epoch_median,max_epochs_run,total_seconds,ceilings
+trial_02,manual,5,0.4635414708238321,0.0096803896439516,0.5597916666666667,0.0056269286816956,1.626280045906998,0.0517887429018663,0.5784986089408973,1.263210084132089,64.0,79,290.1049101660028,0

@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-02",
+  "architectures": [
+    [
+      1,
+      50,
+      1
+    ],
+    [
+      1,
+      100,
+      100,
+      1
+    ]
+  ],
+  "rates": [
+    0.001,
+    0.01,
+    0.03,
+    0.1
+  ],
+  "epochs": 1000,
+  "data_seed": 42,
+  "outer_split_seed": 42,
+  "fold_seed": 42,
+  "folds": 5,
+  "initialization_seed": 2026,
+  "shuffle_seed": 2026,
+  "initialization": "xavier_normal",
+  "dtype": "float64",
+  "loss": "mean over all output entries, no penalty",
+  "scaling": "fit separately on each fold training set, refitted on 800 outer training rows for final fits",
+  "pick_rule": "lowest mean validation MSE over all five folds per architecture/optimizer pair",
+  "fold_spread": "sample SD, ddof=1, not seed uncertainty or a confidence interval",
+  "overall_validation_pick": "run_20",
+  "test_provenance": "reused Project 1 split, previously scored in degree sweep, old CV and earlier holdout runs",
+  "convergence": "fixed epoch limit, no convergence assertion or early stopping",
+  "dependencies": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "pandas": "2.3.3",
+    "seaborn": "0.13.2",
+    "scikit-learn": "1.9.1",
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "nbclient": "0.11.0",
+    "nbformat": "5.11.1"
+  },
+  "rerun": "Run package imports and Part b cells in order with the project .venv kernel, working directory Code/"
+}

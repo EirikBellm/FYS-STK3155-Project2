@@ -1,0 +1,31 @@
+{
+  "config": {
+    "id": "trial_07",
+    "hidden": [
+      64
+    ],
+    "activation": "leaky_relu",
+    "gamma": 0.00032719088784880174,
+    "penalty": "l2",
+    "lmbd": 9.470862876041776e-05
+  },
+  "fold": 3,
+  "family": "manual",
+  "epochs_run": 100,
+  "best_epoch": 99,
+  "stopped_early": false,
+  "hit_ceiling": true,
+  "seconds": 11.233108165906742,
+  "cross_entropy": 1.688400947117998,
+  "accuracy": 0.553125,
+  "macro_f1": 0.4451729583350277,
+  "train_cross_entropy": 1.349995622505922,
+  "train_accuracy": 0.6330729166666667,
+  "train_macro_f1": 0.5395785617527148,
+  "monitor_cross_entropy": 1.654328733081255,
+  "monitor_accuracy": 0.5505208333333333,
+  "monitor_macro_f1": 0.43241481867689097,
+  "fit_n": 15360,
+  "monitor_n": 3840,
+  "validation_n": 4800
+}

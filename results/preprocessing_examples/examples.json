@@ -1,0 +1,92 @@
+{
+  "sampling_seed": 2718,
+  "sampling": "one random fit_0 image per displayed class",
+  "source_function": "Code/part_e_classification.py:prepare",
+  "examples": [
+    {
+      "class": "Alpha",
+      "development_index": 11343,
+      "path": "ALPUB_v2/images/Alpha/Z_POxy.v0036.n2771.a.01_130915_289_Alpha_5-8.jpg",
+      "publication": "POxy.n2771",
+      "raw_size": [
+        70,
+        70
+      ],
+      "role": "fit_0",
+      "raw_sha256": "47b63b19c4d086204a85745163cb7d028215f8c54ca5ebfd77abaab997fc4e80",
+      "prepared_sha256": "63b6c851c7d7ae2fa4633a0e85c36f02b736ea07c8b5f5cf8d09c109b1a7d5a4",
+      "matches_saved_training_cache": true
+    },
+    {
+      "class": "Beta",
+      "development_index": 16549,
+      "path": "ALPUB_v2/images/Beta/Z_POxy.v0021.n2302.a.01_135629_62_Beta_13-13.jpg",
+      "publication": "POxy.n2302",
+      "raw_size": [
+        70,
+        70
+      ],
+      "role": "fit_0",
+      "raw_sha256": "c2324412f284929dcb58c5dd382d4146c21bad905bc8179d74828a113dc28db2",
+      "prepared_sha256": "0a06478cec71475b645ff204621d169374d665754693a77c1d02b220dd015162",
+      "matches_saved_training_cache": true
+    },
+    {
+      "class": "Lambda",
+      "development_index": 66417,
+      "path": "ALPUB_v2/images/Lambda/Z_POxy.v0042.n3010.a.01_133727_130_Lambda_7-7.jpg",
+      "publication": "POxy.n3010",
+      "raw_size": [
+        70,
+        70
+      ],
+      "role": "fit_0",
+      "raw_sha256": "65528407e8e5d676bc0ee7c736d08b9ed71de44c5d8f31f7239635bfb941ea25",
+      "prepared_sha256": "86b8e1f4d5fcc7b9ed60fd0583b5be44503cd6cd5ec7ce16a794e9a3a5281473",
+      "matches_saved_training_cache": true
+    },
+    {
+      "class": "Nu",
+      "development_index": 80711,
+      "path": "ALPUB_v2/images/Nu/Z_POxy.v0015.n1789.a.01_135094_7_Nu_11-31.jpg",
+      "publication": "POxy.n1789",
+      "raw_size": [
+        70,
+        70
+      ],
+      "role": "fit_0",
+      "raw_sha256": "486a9d649fe9e46885c6ef1ad83f95c140e9a8d8a4a8bfec2eed26b361cf08e7",
+      "prepared_sha256": "21e4295750cb5869b8fae186b99fcbf41df67e6ddd83898f3bf83f131176981a",
+      "matches_saved_training_cache": true
+    },
+    {
+      "class": "Xi",
+      "development_index": 158344,
+      "path": "ALPUB_v2/images/Xi/Z_POxy.v0038.n2860.a.01_132097_523_Xi_15-17.jpg",
+      "publication": "POxy.n2860",
+      "raw_size": [
+        70,
+        70
+      ],
+      "role": "fit_0",
+      "raw_sha256": "f600a4eabb63f6f3be5555e77ee257c99d1bb992bc75836242a13eee8273d1c9",
+      "prepared_sha256": "c4b09bcc070dd712ed770af3bfececa8e6679b93ced14eb46cfb05f1e49ad767",
+      "matches_saved_training_cache": true
+    },
+    {
+      "class": "LunateSigma",
+      "development_index": 74287,
+      "path": "ALPUB_v2/images/LunateSigma/Z_POxy.v0067.n4566.a.01_137653_15_LunateSigma_8-8.jpg",
+      "publication": "POxy.n4566",
+      "raw_size": [
+        70,
+        70
+      ],
+      "role": "fit_0",
+      "raw_sha256": "183350601626ff3ad4c487d22ead3deeeae3ddb2927cd27fa305c3bc73714308",
+      "prepared_sha256": "39986a87b853b7d05302ddaac116904cdb294d7a111ff508ed2be3d2992b67ed",
+      "matches_saved_training_cache": true
+    }
+  ],
+  "display": "Each crop is independently enlarged for viewing. Network intensities are shown spatially before flattening."
+}

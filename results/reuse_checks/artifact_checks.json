@@ -1,0 +1,21 @@
+{
+  "small_checks_passed": 23,
+  "exact_project1_function_extracts": 18,
+  "dated_snapshot_files_unchanged": 124,
+  "official_sources_unchanged": true,
+  "notebook_red_notes_preserved_in_html": true,
+  "missing_notes_match_report": true,
+  "new_notebook_cells_executed": true,
+  "notebook_outputs_left_cleared": true,
+  "report_pdf_pages": 8,
+  "report_latex_warnings": 0,
+  "pdf_sha256": "6ce416b86dff0523d67fb85858a5df02f23fa32c5e98ede3138eeef3e6d3af2f",
+  "notebook_schema_and_cell_ids_valid": true,
+  "notebook_html_export_warnings": 0,
+  "shared_red_notes": 16,
+  "inline_reuse_source_comments": true,
+  "comment_only_change_preserves_executable_AST": true,
+  "report_modular_sections": true,
+  "latest_coverage_update": "coverage_update/checks.json",
+  "historical_section_split_pdf_text_and_all_six_page_renders_unchanged": true
+}

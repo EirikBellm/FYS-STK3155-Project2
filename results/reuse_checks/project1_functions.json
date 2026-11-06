@@ -1,0 +1,110 @@
+[
+  {
+    "function": "runge_function",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 56,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "generate_data",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 77,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "create_design_matrix",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 112,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "scale_data",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 140,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "mse",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 198,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "r2_score",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 218,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "fit_regression",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 262,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "predict",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 302,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "make_cv_splits",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 545,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "cross_validation_scores",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 569,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "cost_function",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 655,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "analytical_gradient",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 705,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "automatic_gradient",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 753,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "check_gradient",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 792,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "initialize_optimizer_state",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 857,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "optimizer_step",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 895,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "optimize",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 1011,
+    "adaptation": "Exact function extraction, historical docstrings unchanged"
+  },
+  {
+    "function": "relative_error",
+    "source": "Code/prior_work_2026-10-27/project1/project1.py",
+    "line": 241,
+    "adaptation": "Exact function extraction, historical docstring unchanged"
+  }
+]

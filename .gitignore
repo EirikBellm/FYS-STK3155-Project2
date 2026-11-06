@@ -1,0 +1,46 @@
+# Local Python environments and credentials
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Python and notebook caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.matplotlib/
+.coverage
+htmlcov/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build products and editor backups
+build/
+.build/
+dist/
+*.egg-info/
+*.log
+*.aux
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.run.xml
+*.synctex.gz
+*.tmp
+*.swp
+*~
+
+# Downloaded raw data and rebuildable image caches
+/data/alpub_v2/*.zip
+/data/alpub_v2/processed_part_e/

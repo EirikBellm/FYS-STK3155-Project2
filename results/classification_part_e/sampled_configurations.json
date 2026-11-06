@@ -1,0 +1,131 @@
+[
+  {
+    "id": "trial_00",
+    "hidden": [
+      32,
+      32,
+      32
+    ],
+    "activation": "relu",
+    "gamma": 0.0006699208178750479,
+    "penalty": "l1",
+    "lmbd": 0.006521480687029111
+  },
+  {
+    "id": "trial_01",
+    "hidden": [
+      32,
+      32
+    ],
+    "activation": "sigmoid",
+    "gamma": 0.00024904749512695437,
+    "penalty": "l2",
+    "lmbd": 2.8307279055666076e-06
+  },
+  {
+    "id": "trial_02",
+    "hidden": [
+      128
+    ],
+    "activation": "relu",
+    "gamma": 0.0006231634700201112,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  {
+    "id": "trial_03",
+    "hidden": [
+      64
+    ],
+    "activation": "relu",
+    "gamma": 0.0007764889602690961,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  {
+    "id": "trial_04",
+    "hidden": [
+      64,
+      64
+    ],
+    "activation": "sigmoid",
+    "gamma": 0.00011512937183468745,
+    "penalty": "l1",
+    "lmbd": 1.4438824890068738e-06
+  },
+  {
+    "id": "trial_05",
+    "hidden": [
+      64,
+      64
+    ],
+    "activation": "sigmoid",
+    "gamma": 0.00511916274213234,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  {
+    "id": "trial_06",
+    "hidden": [
+      64,
+      64
+    ],
+    "activation": "sigmoid",
+    "gamma": 0.002318221697684332,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  {
+    "id": "trial_07",
+    "hidden": [
+      64
+    ],
+    "activation": "leaky_relu",
+    "gamma": 0.00032719088784880174,
+    "penalty": "l2",
+    "lmbd": 9.470862876041776e-05
+  },
+  {
+    "id": "trial_08",
+    "hidden": [
+      32,
+      32,
+      32
+    ],
+    "activation": "sigmoid",
+    "gamma": 0.007583290992393134,
+    "penalty": "l2",
+    "lmbd": 1.3032053133430136e-07
+  },
+  {
+    "id": "trial_09",
+    "hidden": [
+      64
+    ],
+    "activation": "sigmoid",
+    "gamma": 0.00014940909738879194,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  {
+    "id": "trial_10",
+    "hidden": [
+      128
+    ],
+    "activation": "leaky_relu",
+    "gamma": 0.00014746792591260448,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  {
+    "id": "trial_11",
+    "hidden": [
+      64,
+      64
+    ],
+    "activation": "relu",
+    "gamma": 0.0020120624813981295,
+    "penalty": "l2",
+    "lmbd": 0.0003035607616822464
+  }
+]

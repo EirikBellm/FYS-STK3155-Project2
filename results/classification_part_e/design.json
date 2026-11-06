@@ -1,0 +1,23 @@
+{
+  "development": 159053,
+  "reserved_test": 46723,
+  "excluded_blanks": 21,
+  "seed": 2026,
+  "outer_folds": 5,
+  "inner_monitor_fraction": "one inner grouped fold out of five",
+  "trials": 12,
+  "search_images": 24000,
+  "batch_size": 128,
+  "patience": 10,
+  "max_epochs": 100,
+  "final_budget_rule": "ceil(median(best_epoch * fit_rows) / 159053), at least one full-development epoch",
+  "min_delta": 0.0,
+  "selection": "highest mean outer validation macro-F1, 24 fixed classes",
+  "monitor": "unpenalized mean cross-entropy",
+  "dtype": "float64 computation, uint8 image cache",
+  "preprocessing": "white alpha composite, grayscale, per-image autocontrast, aspect-preserving thumbnail within 26x26, center white pad to 28x28, invert /255, flatten",
+  "augmentation": null,
+  "penalty": "weight-only full sums, L1 sign(0)=0",
+  "manifest_sha256": "1bf88d58671057c28d6c1855e5b34ad396b0483e1230a3870362f285fc5919a9",
+  "network_sha256": "01d75af7af827fbf4582191daf0a0e18673764d7c69257044637c1f6dc75163f"
+}

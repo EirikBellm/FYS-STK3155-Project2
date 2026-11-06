@@ -1,0 +1,31 @@
+{
+  "config": {
+    "id": "library_matched",
+    "hidden": [
+      128
+    ],
+    "activation": "relu",
+    "gamma": 0.0006231634700201112,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  "fold": 2,
+  "family": "library",
+  "epochs_run": 75,
+  "best_epoch": 65,
+  "stopped_early": true,
+  "hit_ceiling": false,
+  "seconds": 17.871598541969433,
+  "cross_entropy": 1.5977623944081896,
+  "accuracy": 0.5770833333333333,
+  "macro_f1": 0.48312455911422286,
+  "train_cross_entropy": 1.21624046578,
+  "train_accuracy": 0.6638020833333333,
+  "train_macro_f1": 0.6018147612324012,
+  "monitor_cross_entropy": 1.5841978523284832,
+  "monitor_accuracy": 0.56171875,
+  "monitor_macro_f1": 0.46407285094797873,
+  "fit_n": 15360,
+  "monitor_n": 3840,
+  "validation_n": 4800
+}

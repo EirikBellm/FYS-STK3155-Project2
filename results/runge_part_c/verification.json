@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "270 finite fold records, 260 new fits and 10 explicitly reused Part b fits",
+    "exact Part b data, folds and training-only preprocessing preserved",
+    "all 270 saved fold weights independently reproduce train/validation MSE and OOF predictions",
+    "all epoch curves have 1000 entries and correct final training MSE",
+    "54 summary means/SDs/gaps and OOF MSEs recomputed",
+    "18 per-pair learning-rate minima and overall CV minimum verified",
+    "reused Part b weight files remain byte-identical",
+    "paired fold width/depth contrasts saved for the overfitting discussion",
+    "parameter counts and planned activation/architecture/rate grid checked",
+    "notebook schema, successful execution and three embedded figures checked",
+    "outer test rows excluded from all fits and validation scores, no test predictions saved"
+  ],
+  "max_oof_prediction_absolute_error": 0.0,
+  "settings": 54,
+  "fold_records": 270,
+  "new_fits": 260,
+  "reused_fits": 10,
+  "new_fit_seconds": 499.524807382375
+}

@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-02",
+  "optimizer": "adam",
+  "activation": "sigmoid",
+  "epochs": 1000,
+  "batch_size": 32,
+  "seeds": [
+    2026
+  ],
+  "folds": 5,
+  "fold_seed": 42,
+  "sampling_seed": 42,
+  "initialization": "xavier_normal",
+  "biases": "zero and unpenalized",
+  "dtype": "float64",
+  "penalty_convention": "full weight-only sum, no extra n/layer/parameter normalization",
+  "l1_zero_subgradient": 0,
+  "positive_trials_per_penalty": 16,
+  "zero_control_trials": 16,
+  "architectures": [
+    [
+      25
+    ],
+    [
+      25,
+      25
+    ],
+    [
+      50,
+      50
+    ]
+  ],
+  "rate_distribution": "loguniform(1e-4,1e-2)",
+  "penalty_distribution": "loguniform(1e-7,1e-2)",
+  "pick_rule": "lowest mean five-fold validation MSE at seed 2026",
+  "test_use": "after freezing all settings, same historically used Project 1 200-row split",
+  "test_seed_rule": "one fixed final fit per network at seed 2026",
+  "near_zero_weight_threshold": 0.001,
+  "convergence": "fixed epoch limit for networks, no early stopping",
+  "polynomial_benchmarks": [
+    {
+      "model": "ridge",
+      "degree": 14,
+      "lmbd": 1e-06,
+      "historical_cv_mse": 0.011844303896255494
+    },
+    {
+      "model": "lasso",
+      "degree": 6,
+      "lmbd": 0.0001,
+      "historical_cv_mse": 0.018024466852025845
+    }
+  ],
+  "lasso_solver": "reused Project 1 Adam/JAX, lr .01, tol 1e-7, max 10000, seed 42",
+  "lasso_reference": "sklearn coordinate descent, alpha=lambda/2 for matching full-MSE convention",
+  "implementation_sha256": "01d75af7af827fbf4582191daf0a0e18673764d7c69257044637c1f6dc75163f",
+  "dependencies": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pandas": "2.3.3",
+    "matplotlib": "3.11.2",
+    "scikit-learn": "1.9.1",
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2"
+  },
+  "rerun": ".venv/bin/python Code/run_part_d.py from the project root"
+}

@@ -1,0 +1,109 @@
+{
+  "training_split": "full development set used for final model training",
+  "training_n": 159053,
+  "test_n": 46723,
+  "classes": 24,
+  "uniform_expected_accuracy": 0.041666666666666664,
+  "frequency_expected_accuracy": 0.06422663253664591,
+  "frequency_rule": "sum_k (train_count_k / training_n) * (test_count_k / test_n)",
+  "majority_class": "Omicron",
+  "majority_test_accuracy": 0.10857607602251568,
+  "class_counts": {
+    "Alpha": {
+      "training": 16200,
+      "test": 4998
+    },
+    "Beta": {
+      "training": 999,
+      "test": 297
+    },
+    "Chi": {
+      "training": 3383,
+      "test": 945
+    },
+    "Delta": {
+      "training": 4338,
+      "test": 1351
+    },
+    "Epsilon": {
+      "training": 11646,
+      "test": 3261
+    },
+    "Eta": {
+      "training": 5689,
+      "test": 1658
+    },
+    "Gamma": {
+      "training": 2813,
+      "test": 908
+    },
+    "Iota": {
+      "training": 10715,
+      "test": 3113
+    },
+    "Kappa": {
+      "training": 6212,
+      "test": 1898
+    },
+    "Lambda": {
+      "training": 5381,
+      "test": 1524
+    },
+    "LunateSigma": {
+      "training": 7840,
+      "test": 2311
+    },
+    "Mu": {
+      "training": 5407,
+      "test": 1517
+    },
+    "Nu": {
+      "training": 15615,
+      "test": 4440
+    },
+    "Omega": {
+      "training": 5894,
+      "test": 1744
+    },
+    "Omicron": {
+      "training": 17682,
+      "test": 5073
+    },
+    "Phi": {
+      "training": 2267,
+      "test": 662
+    },
+    "Pi": {
+      "training": 6984,
+      "test": 2046
+    },
+    "Psi": {
+      "training": 389,
+      "test": 123
+    },
+    "Rho": {
+      "training": 8032,
+      "test": 2420
+    },
+    "Tau": {
+      "training": 11530,
+      "test": 3286
+    },
+    "Theta": {
+      "training": 2876,
+      "test": 840
+    },
+    "Upsilon": {
+      "training": 6116,
+      "test": 2011
+    },
+    "Xi": {
+      "training": 478,
+      "test": 163
+    },
+    "Zeta": {
+      "training": 567,
+      "test": 134
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "manual_id": "trial_02",
+  "reason": "highest mean validation macro-F1 among sampled no-penalty sigmoid/ReLU settings",
+  "differences": "sklearn initialization, shuffle RNG and Adam implementation, matching architecture, activation, rate, no penalty, precision, batch size, data and stopping protocol"
+}

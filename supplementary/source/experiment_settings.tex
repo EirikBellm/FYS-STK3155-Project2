@@ -1,0 +1,358 @@
+% LLM-assisted: moved from the longer Methods during the length audit.
+% LLM-assisted: Codex drafted these procedures from code and saved runs,
+% 4 November 2026. Earlier source credits are retained.
+% This records the implemented study, not student review or new experiments.
+\section{Full experiment specifications}
+\label{app:experiment-settings}
+\subsection{Data and preprocessing}
+The Runge experiments shared one
+800-point development set and 200 points of reserved test data.
+The classification experiments kept publications together when splitting development
+and test images. Within its development data, separate monitoring sets
+controlled early stopping and validation folds ranked hyperparameters.
+
+\subsubsection{Runge regression}
+We generated 1000 evenly spaced inputs on $[-1,1]$ and targets
+\[
+y_i=\frac{1}{1+25x_i^2}+\epsilon_i,
+\qquad \epsilon_i\sim\mathcal N(0,0.1^2),
+\]
+with NumPy's \nolinkurl{linspace} with both endpoints included. Gaussian
+noise was drawn with \nolinkurl{default_rng(42)}. We saved the exact Runge
+values alongside the noisy targets as a reference for the plots.
+We trained the Runge models on the noisy targets and measured their
+MSE against those targets.
+
+Scikit-learn's \nolinkurl{train_test_split}, with
+\nolinkurl{test_size=0.2}, \nolinkurl{shuffle=True} and
+\nolinkurl{random_state=42}, split the data into 800 development points
+and 200 test points, without stratification. We applied
+\nolinkurl{KFold(n_splits=5, shuffle=True, random_state=42)} to the
+development set. Each cross-validation split had 640 training points and 160 validation
+points.
+We used the same training and validation points for every Runge model
+comparison.
+
+Following Section~\ref{sec:theory-scaling}, we fitted the input scaling
+separately within each cross-validation split. We standardised each input
+feature with the training points' mean and population standard deviation (\nolinkurl{ddof=0}). We also
+subtracted the training points' target mean from $y$, without scaling its
+variance. We transformed the validation data with the statistics from the training set. We then added the training target mean back to predictions to return
+them to the original scale.
+
+For the Runge task, each network received the standardised value of $x$
+as its only input feature. For the polynomial models, we formed the features
+$x,x^2,\ldots,x^p$ and then standardised each feature column. Centring the
+targets handled the polynomial intercept, so we did not add a constant
+feature column. If a feature had zero standard deviation, we used one as
+its scaling divisor. Before the final fits, we recomputed the preprocessing
+statistics from all 800 development points and used them to transform
+the test data.
+
+The 200 test points had already been scored in Project 1 and earlier
+Runge runs. We reused these points as the reserved test data for the current comparisons. The current searches picked hyperparameter configurations from validation scores.
+The random split shows how well the models predict within $[-1,1]$.
+
+\subsubsection{Greek letter images}
+We downloaded \nolinkurl{ALPUB_v2.zip} on 27 October 2026 from the author's
+\href{https://www.kaggle.com/datasets/miswindall/al-pub-v2}{Kaggle release},
+linked from the \href{https://data.cs.mtsu.edu/al-pub/}{MTSU dataset page}.
+The dataset's background is described by
+\textcite{swindall2021greek}. Our audit found 205797 JPEG images, each
+$70\times70$ pixels, in 24 supplied letter classes.
+Lunate sigma is a C-shaped form of the Greek letter sigma, common in
+the ancient papyri covered by the dataset. In AL-PUB v2, it replaced
+the earlier release's sparsely represented sigma class. This change kept
+the task at 24 classes and reduced the severe shortage of sigma images
+\parencite[Sec.~7.3]{swindall2024papyrology}.
+The software successfully read all JPEG files and converted them into pixel values. Two sets of identical pixels carried conflicting
+labels: five wholly white and sixteen wholly black images. We excluded
+all 21, leaving 205776 images, and kept the raw archive unchanged.
+The audit checked archive integrity and exact pixel duplicates.
+
+We used Pillow to place each image on a white background and convert it
+to grayscale, then applied \nolinkurl{ImageOps.autocontrast}. We resized the images with Lanczos resampling to fit inside $26\times26$ pixels while
+keeping their aspect ratio. We centred each image on a white $28\times28$ canvas and flattened it
+row by row into 784 pixel features for the network. Pixel intensity $p$ was
+mapped to $1-p/255$, so white became zero and darker ink approached one.
+We kept grayscale values without binary thresholding. The exact Pillow
+calls and centring rule are given in Appendix~\ref{app:methods-reproduction}.
+
+We used no augmentation or class weighting. These per-image transforms
+needed no fitted statistics across the dataset. We stored the processed pixel values as unsigned 8-bit integers and
+converted them to float64 when training or assessing a model. We kept the
+same output order for all 24 letter classes. For training, we one-hot encoded each image's target: a vector with one
+at its class position and zero elsewhere.
+
+The final experiments reused the publication-based holdout assignments
+generated during our project's initial AL-PUB data checks. We grouped images by the POxy publication item
+number in each filename. Images from the same publication may share visual
+characteristics. We kept them together to reduce the risk of overly
+optimistic test results and to test how well the models work on other
+publications.
+
+We reserved 284 of the 1419 publication groups for testing. This left
+159053 development images from 1135 groups and 46723 test images from
+284 groups. Publication groups do not guarantee different writers in the
+development and test sets. The grouping rule and exact split procedure
+are recorded in Appendix~\ref{app:methods-reproduction}.
+
+\subsection{Shared network and training rules}
+Our NumPy FFNN implemented the row-batch forward pass in
+Eq.~\eqref{eq:forward}. It stored the layer values needed by the manual
+backward sweep in Eqs.~\eqref{eq:backward}--\eqref{eq:parameter-gradients}.
+The Runge networks had one linear output and full MSE from
+Eq.~\eqref{eq:mse}. The letter networks had 24 softmax outputs and
+mean cross-entropy, with the output derivative in
+Eq.~\eqref{eq:ce-gradient}. We used the actual number of samples in each
+batch for normalisation and applied no second batch average.
+Cross-entropy was evaluated from logits with log-sum-exp, as described
+in Section~\ref{sec:theory-losses}. JAX supplied independent reference
+gradients for checks and was not used to train these networks.
+
+We initialised each network's biases at zero. We initialised the weights
+of sigmoid hidden layers and all output layers with Xavier normal draws with variance $2/(n_{\rm in}+n_{\rm out})$.
+For ReLU and Leaky ReLU hidden layers, we used He normal draws with variance
+$2/n_{\rm in}$ \parencite{hjorthjensenLectureNotes}. Leaky ReLU had fixed
+negative slope 0.01. At zero, the implementation used derivative zero
+for ReLU and 0.01 for Leaky ReLU. We kept separate optimiser state for each layer's weight matrix and
+bias vector. For each fit, we reset a NumPy \nolinkurl{default_rng}
+for initialisation and a separate one for shuffling, with the seeds
+stated for that experiment. We drew weights with \nolinkurl{Generator.normal}
+and shuffled the training samples each epoch with \nolinkurl{Generator.permutation}.
+The shuffle generator continued from its state in the preceding epoch. If the last minibatch was smaller, we computed its gradients using the
+actual number of samples in that minibatch. We fixed the RMSProp decay at 0.9.
+For Adam, we fixed $\beta_1=0.9$ and $\beta_2=0.999$ and applied bias
+correction. Both optimisers had $\varepsilon=10^{-8}$. The base learning rate stayed constant within each fit and was picked as set out below.
+All network computations ran in float64.
+
+Regularised networks used the weight-only L1 and L2 cost functions of
+Section~\ref{sec:theory-regularisation}. The penalty gradients were added
+to the data-loss gradients before the Adam moment updates. Biases were
+excluded, and the penalty had no further division by sample or parameter
+count. The L1 subgradient at zero was set to zero. We recorded the
+penalised training cost and used unpenalised prediction scores for
+comparisons across penalties \parencite{goodfellow2016deep}.
+
+\subsection{Runge experiments}
+\subsubsection{Optimiser comparison}
+The training rules of Section~\ref{sec:theory-training} can reach different
+fits under the same epoch budget. We tested their achieved MSE and
+fitting cost while holding the hidden activation and initialisation
+scheme fixed. We compared a network with one hidden layer of 50 neurons with a network
+that had two hidden layers of 100 neurons each. Both had sigmoid hidden
+activation functions and no penalty. For each architecture we tested full-batch gradient descent (GD), minibatch RMSProp and minibatch Adam at base learning rates
+$\{0.001,0.01,0.03,0.1\}$. All fits ran for 1000 epochs. GD used all
+training points per update, while RMSProp and Adam used batches of 32.
+Initialisation and shuffle seeds were fixed at 2026. At the fold-training size of 640, each minibatch epoch made 20 updates,
+while each GD epoch made one. The comparison therefore varied the
+update rule together with the number of updates per epoch. It assessed
+these training setups under a common pass budget.
+
+We fitted each of the 24 hyperparameter configurations on all five cross-validation splits.
+For each architecture and optimiser, we picked the learning rate that gave
+the lowest mean validation MSE. We then fitted the networks with those
+six picked hyperparameter configurations on all 800 development points. We also picked the best of those six configurations by mean validation
+MSE. OLS was fitted by pseudoinverse
+at fixed degrees 14 and 15 on the same folds and development rows, with
+\nolinkurl{numpy.linalg.pinv} with its default cutoff.
+Degree 14 came from the earlier validation-based selection. Degree 15 came from an earlier
+test-score sweep. We kept it as a historical comparison with that
+test-guided choice of degree recorded.
+
+\subsubsection{Activation and network size}
+We compared training and validation MSE as width and depth changed. We next compared sigmoid, ReLU and Leaky ReLU, one or two hidden layers,
+and widths 25, 50 and 100 in each hidden layer. We ran Adam because it gave the lowest mean validation MSE in the
+optimiser comparison in Section~\ref{sec:results-optimisers}. For each activation--architecture
+pair, we tested learning rates $\{0.0003,0.001,0.003\}$ and picked the learning rate
+that gave the lowest mean validation MSE. We assessed 54 hyperparameter configurations on the same five cross-validation splits.
+Ten of the needed fits matched completed sigmoid/Adam fits from the
+optimiser comparison, so we reused their saved weights and scores.
+We trained the other 260 fits anew. Each network was trained for 1000
+epochs with batches of 32 and seed 2026. Its output layer was linear,
+and no penalty was applied.
+
+Each activation--architecture pair had its own validation-selected
+learning rate in the network-size comparison. We computed validation MSE
+minus training MSE within each fold, then averaged those paired gaps.
+We also recorded whether a larger model lowered training error while
+raising validation error, using the overfitting pattern in
+Section~\ref{sec:theory-regularisation}. Changing the hidden activation function also changed its weight-initialisation
+scheme under the rules above. The comparison therefore includes that
+change. We used these validation folds to pick the learning rates, so
+their scores describe performance on the validation sets used for hyperparameter selection.
+No test scores or explicit bias--variance decomposition were produced in
+this experiment.
+
+\subsubsection{Regularisation and polynomial regression models}
+\label{app:regularisation-search}
+We compared prediction errors across the tuned unregularised, L1 and L2
+FFNN families. These manual
+FFNNs used sigmoid hidden activation functions and Adam, with hidden widths
+$[25]$, $[25,25]$ or $[50,50]$, informed by the capacity comparison. We kept
+1000 epochs and batches of 32. Scikit-learn's \nolinkurl{ParameterSampler},
+with \nolinkurl{n_iter=16} and \nolinkurl{random_state=42}, drew combinations
+from the architecture list in the order shown above. Learning rates used SciPy's
+\nolinkurl{loguniform} distribution on $[10^{-4},10^{-2}]$, and positive
+regularisation parameters used the same distribution on $[10^{-7},10^{-2}]$.
+The L1 and L2 searches used the same sampled hyperparameter configurations.
+For each combination, we also fitted a network with the same architecture
+and learning rate but no penalty, giving 16 unregularised comparison hyperparameter configurations. Random search gave us a bounded
+search budget \parencite{bergstra2012random}.
+
+We fitted every sampled configuration on the five shared folds at
+seed 2026 and picked the lowest mean unpenalised validation MSE within
+each family. Each selected network was fitted on all 800 development
+points at seed 2026 and scored on the shared 200 test points.
+
+Ridge used degree 14 and $\lambda=10^{-6}$, the five-fold pick in
+Project 1's \nolinkurl{results/part_d_best_by_k.csv}, with historical
+validation MSE 0.0118443. Lasso used degree 6 and $\lambda=10^{-4}$,
+the lowest five-fold validation MSE among candidates marked converged
+in every fold in \nolinkurl{results/part_i_common_cv.csv}, at 0.0180245.
+The later Ridge grid omitted $10^{-6}$, and the earlier Lasso test
+minimum was unconverged. The ten-fold Ridge pick used a different
+assessment protocol. We kept the five-fold selections and fitted them
+anew on the shared folds and development set. The corrected Ridge baseline used the normal
+equations with $n\lambda I$, matching full MSE, solved with
+\nolinkurl{numpy.linalg.solve}. We fitted Lasso with the reused full-batch Adam/JAX gradient solver with learning rate 0.01 and at most 10000 updates. Its initial
+coefficients were drawn from $\mathcal N(0,0.1^2)$ with a fresh
+\nolinkurl{default_rng(42)}. It stopped when the Euclidean norm of the
+change in coefficients fell below $10^{-7}$.
+
+We checked Ridge against augmented least squares, solved with
+\nolinkurl{numpy.linalg.lstsq} and \nolinkurl{rcond=None}. The Lasso reference
+was scikit-learn's \nolinkurl{Lasso}, with $\alpha=\lambda/2$ to match its
+half-MSE convention, \nolinkurl{fit_intercept=False},
+\nolinkurl{tol=1e-12} and \nolinkurl{max_iter=100000}. Its coordinate selection
+used the default cyclic order. Convergence flags and cost function differences
+were saved.
+
+\subsection{Letter-classification experiment}
+We applied the multiclass loss of Section~\ref{sec:theory-losses} to the
+784 pixel features. The model comparison tested whether learned hidden
+features improved macro-F1 over the no-hidden-layer softmax baseline.
+A matched library FFNN checked performance under a separately implemented
+training path. We used a fixed search subset of 24000 development images to keep the search
+within the available runtime. Scikit-learn's
+\nolinkurl{StratifiedShuffleSplit(n_splits=1, train_size=24000, random_state=2026)}
+picked the search subset while keeping roughly the original letter proportions.
+
+We assessed each hyperparameter configuration with scikit-learn's
+\nolinkurl{StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=2026)}.
+It balanced letter proportions as far as the publication groups allowed,
+while keeping each publication in one fold. We used the validation set to measure each model's predictive
+performance. The images left after setting aside a validation fold formed
+that split's outer training pool.
+
+Within each outer training pool, we used a second
+\nolinkurl{StratifiedGroupKFold} with five folds and shuffling enabled.
+Its seed was $2027+f$, where $f=0,\ldots,4$ labels the outer
+cross-validation split. We used
+its first split to define the training set and monitoring set. The monitoring set controlled early stopping, keeping the validation
+fold separate from the stopping decisions as set out in
+Section~\ref{sec:theory-assessment}. No publication appeared in more than one of the training, monitoring or
+validation sets within a cross-validation split. Each set contained images
+from all 24 letter classes.
+
+After each training epoch, we measured cross-entropy on the monitoring
+set. We stopped after ten epochs without a strict decrease in that loss,
+or after 100 epochs, and restored the weights from the epoch with the
+lowest monitoring cross-entropy. We did not use validation scores to decide
+when to stop. All classification models used batches of 128 and seed 2026.
+We recorded whether each fit stopped early or reached the epoch ceiling.
+Convergence remained unverified.
+
+For the minibatch and epoch-monitoring workflow, we consulted the public
+NumPy example in \textcite[Ch.~11]{raschka2022machine}. Our network kept
+its own softmax cross-entropy and grouped monitoring.
+
+For the classification learning curves, training CE was averaged over
+minibatches before each update. Successive batches therefore used
+changing weights. The training and validation scores in the result
+tables were instead computed at one fixed restored model per fold.
+
+Scikit-learn's \nolinkurl{ParameterSampler(n_iter=12, random_state=2026)}
+drew the hyperparameter configurations. We tested one to three hidden layers with equal
+widths picked from $\{32,64,128\}$. Activations were sigmoid, ReLU or
+Leaky ReLU. Adam learning rates followed SciPy's \nolinkurl{loguniform} distribution
+on $[10^{-4},10^{-2}]$. Penalties were none, L1 or L2, with positive
+strengths drawn from \nolinkurl{loguniform} on $[10^{-7},10^{-2}]$.
+Unregularised hyperparameter configurations had regularisation parameter zero.
+Each hyperparameter configuration had the same five
+cross-validation splits.
+
+We ranked hyperparameter configurations by mean validation macro-F1.
+Macro-F1 weights letters equally despite their unequal class sizes. We also saved
+accuracy and mean cross-entropy. The largest softmax output gave the
+predicted class. Macro-F1 included all 24 labels, with undefined per-class
+F1 set to zero. Exact sampling order and metric calls are recorded in
+Appendix~\ref{app:methods-reproduction}.
+
+Logistic regression used the manual softmax implementation with no hidden
+layer or penalty. It tested learning rates $\{10^{-4},10^{-3},10^{-2}\}$ on the same
+folds and stopping scheme. The scikit-learn FFNN
+\parencite{pedregosa2011sklearn} matched the highest-scoring sampled
+no-penalty sigmoid/ReLU hyperparameter configuration in architecture, activation, learning rate,
+batch size and precision. We used \nolinkurl{MLPClassifier} with Adam
+and no penalty, training one epoch at a time through \nolinkurl{partial_fit}.
+This let the scikit-learn FFNN continue training from its preceding epoch
+while our grouped monitoring rule controlled early stopping. Each fit used NumPy's \nolinkurl{RandomState(2026)}.
+The scikit-learn FFNN kept its own initialisation and Adam implementation.
+This was a matched predictive comparison, with those implementation
+differences still present. The exact
+constructor settings are in Appendix~\ref{app:methods-reproduction}.
+We tested 12 hyperparameter configurations for the manual FFNN and three
+learning rates for logistic regression. We fitted the scikit-learn FFNN with
+one matched hyperparameter configuration.
+
+Before assessing test performance, we fixed the picked hyperparameter configurations and final
+training budgets. The final fits used all development images, so each
+epoch processed more images than a search-fold epoch. To carry the
+monitoring-based stopping evidence into a bounded final fit, we used the
+training-image exposure measure introduced in
+Section~\ref{sec:letter-methods}. We set the final
+budget to match the median number of training-image exposures at the best
+monitoring epochs, rounding up to a whole epoch and using at least one:
+\[
+E_{\rm final}=\max\!\left(1,
+\left\lceil\frac{\operatorname{median}_{f}
+(E_{{\rm best},f}n_{{\rm fit},f})}{159053}\right\rceil\right).
+\]
+Here $E_{{\rm best},f}$ is the best monitoring epoch and
+$n_{{\rm fit},f}$ is the number of training images in fold $f$.
+We fitted the final classification models on every development image,
+without holding any back for monitoring. The epoch budget followed
+the exposure-matching rule above.
+We then assessed the three fixed models on the same 46723 test images.
+Test scores did not guide model settings or epoch budgets for these
+classification experiments.
+We saved confusion counts and per-class precision, recall and F1 alongside
+the overall scores. 
+
+\subsection{Checks, uncertainty and reproducibility}
+We compared manual backpropagation against independent float64 JAX
+cost functions for the losses, activations, depths and penalties used here
+\parencite{bradbury2018jax}. Checks included zero weights, nonzero biases,
+activation behaviour at zero, extreme logits, seeded initialisation and
+short final minibatches. A linear network on matching polynomial features
+was checked against OLS. We also tested early stopping and weight
+restoration. Separate inference routines reloaded saved weights and
+recomputed scores and predictions. We checked that publication groups
+stayed separate across the classification data partitions and that each
+training, monitoring and validation set contained all 24 classes. The elementwise pass rule and gradient tolerances for each experiment are
+listed in Appendix~\ref{app:check-tolerances}. Numerical outcomes appear
+at the start of Results, in Section~\ref{sec:implementation-results}.
+
+For each hyperparameter configuration, we reported the mean validation
+score and its sample standard deviation across five folds, with divisor
+four. Fold SD measures variation across validation folds. All reported
+network comparisons use training seed 2026.
+
+We saved the software versions with each experiment, alongside the
+split membership and sampled hyperparameter configurations. Saved weights and predictions
+give a record of the assessed models. Appendix~\ref{app:methods-reproduction}
+gives the software versions and run entry points. It also identifies the
+saved files needed to recover the exact splits and draws.
+Original source archives and dated snapshots stay unchanged.
+

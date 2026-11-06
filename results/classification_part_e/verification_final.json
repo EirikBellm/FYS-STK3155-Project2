@@ -1,0 +1,13 @@
+{
+  "models": [
+    "manual",
+    "logistic",
+    "library"
+  ],
+  "test_rows": 46723,
+  "checks": [
+    "frozen settings predate final weights",
+    "all development-derived epoch budgets kept",
+    "all three final test probability arrays, metrics, confusion matrices and 24 per-class tables independently checked"
+  ]
+}

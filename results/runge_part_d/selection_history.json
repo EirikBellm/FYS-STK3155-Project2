@@ -1,0 +1,48 @@
+{
+  "original_freeze": {
+    "selected": [
+      {
+        "config_id": "l1_04",
+        "kind": "l1",
+        "trial": 4,
+        "hidden": [
+          25,
+          25
+        ],
+        "gamma": 0.008706020878304856,
+        "lmbd": 1.1526449540315607e-06
+      },
+      {
+        "config_id": "l2_04",
+        "kind": "l2",
+        "trial": 4,
+        "hidden": [
+          25,
+          25
+        ],
+        "gamma": 0.008706020878304856,
+        "lmbd": 1.1526449540315607e-06
+      },
+      {
+        "config_id": "none_03",
+        "kind": "none",
+        "trial": 3,
+        "hidden": [
+          50,
+          50
+        ],
+        "gamma": 0.0004649617447336333,
+        "lmbd": 0.0
+      }
+    ],
+    "seeds": [
+      2026,
+      2027,
+      2028
+    ],
+    "basis": "three-seed mean of five-fold unpenalized validation MSE",
+    "test_scores_used": false
+  },
+  "original_frozen_at": 1793638282.999831,
+  "cleanup": "Unused repeat-seed fits removed. The seed-2026 minima select exactly the same configurations. No test-guided model change."
+}

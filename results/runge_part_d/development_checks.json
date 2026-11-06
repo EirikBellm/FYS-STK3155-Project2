@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "all W/b gradients and full objectives agree with independent float64 JAX",
+    "L1 zero subgradient is zero and squared-L2 factor is 2 lambda W",
+    "nonzero biases have exactly unchanged gradients and do not affect penalty value",
+    "zero strength gives bitwise identical parameters and epoch histories",
+    "all three hidden activations, zero/one/two hidden layers, MSE and softmax CE checked",
+    "finite L1/L2 pilots, smaller final batch and sklearn wrapper fits",
+    "unsupported, negative, nonfinite and silently dropped penalties rejected"
+  ],
+  "gradient_arrays_checked": 288,
+  "gradient_entries_checked": 2304,
+  "max_gradient_absolute_error": 8.881784197001252e-16,
+  "implementation_sha256": "770b1d67e5846f20207d397b844b223cd45882d2df2669ed8f7a9cab9657c0f2"
+}

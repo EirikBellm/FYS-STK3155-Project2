@@ -1,0 +1,20 @@
+{
+  "schema": true,
+  "earlier_scientific_code_and_outputs_unchanged": 25,
+  "course_markdown_unchanged": true,
+  "part_e_embedded_figures": 4,
+  "no_error_outputs": true,
+  "remaining_work_synchronized": true,
+  "official_source_notebook_unchanged": true,
+  "shared_network_hash_matches": true,
+  "html_export": "passed, missing alternative text warnings for 13 saved images",
+  "pdf_pages": 18,
+  "pdf_build": "latexmk/biber passed without warnings, unresolved references or overfull/underfull boxes",
+  "visual_checks": [
+    "all four Part E notebook figures inspected",
+    "all 18 PDF pages inspected as a contact sheet",
+    "Part E table and confusion figure inspected at page size"
+  ],
+  "report_image_fallback": "unavailable iCloud Part C vector figure replaced only in report include by its existing matching PNG",
+  "unicode_product": "current introduction glyph kept, pdfLaTeX rendering mapping added"
+}

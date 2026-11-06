@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "all 18 activation/architecture combinations checked at initial and perturbed parameters",
+    "all layer weight/bias gradients agree with independent float64 JAX",
+    "exact seeded layerwise Xavier/He draws and zero biases",
+    "Leaky ReLU values, slope and zero convention checked",
+    "existing ReLU zero convention preserved",
+    "finite Adam pilots with a smaller final batch for all three activations"
+  ],
+  "gradient_arrays_checked": 180,
+  "gradient_entries_checked": 86136,
+  "max_gradient_absolute_error": 8.881784197001252e-16,
+  "leaky_relu_slope": 0.01,
+  "implementation_sha256": "770b1d67e5846f20207d397b844b223cd45882d2df2669ed8f7a9cab9657c0f2"
+}

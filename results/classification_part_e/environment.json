@@ -1,0 +1,20 @@
+{
+  "python": "3.12.7 (main, Nov  3 2024, 11:45:52) [Clang 16.0.0 (clang-1600.0.26.3)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "pandas": "2.3.3",
+    "Pillow": "12.3.0",
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2",
+    "matplotlib": "3.11.2"
+  },
+  "workers": 4,
+  "thread_environment": {
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "pick": {
+    "config": {
+      "id": "logistic_1",
+      "hidden": [],
+      "activation": "sigmoid",
+      "gamma": 0.001,
+      "penalty": "none",
+      "lmbd": 0.0
+    },
+    "epochs": 3,
+    "fold_best_epochs": [
+      31,
+      31,
+      21,
+      31,
+      32
+    ],
+    "budget_rule": "match median development-only training-image exposures, rounded up to full-development epochs"
+  },
+  "training": {
+    "cross_entropy": 1.875637159248353,
+    "accuracy": 0.4950991179040949,
+    "macro_f1": 0.3876251995601449
+  },
+  "training_rows": 159053,
+  "epochs_run": 3,
+  "best_epoch": 3,
+  "stopped_early": false,
+  "hit_ceiling": true,
+  "seconds": 2.9308481668122113
+}

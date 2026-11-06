@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "ParameterSampler draws exactly reproduced with positive log-uniform ranges and separate zero controls",
+    "equal 16-trial budgets per family at seed 2026",
+    "shared Part b data/folds and training-only statistics checked",
+    "all fold weights independently reproduce unpenalized MSE, objective J, gaps and OOF predictions",
+    "single-seed five-fold means/SDs and final validation picks checked",
+    "all polynomial fold predictions and objective reference gaps checked",
+    "final refit preprocessing uses only the same 800 training rows",
+    "three final network predictions and both polynomial predictions reproduce all five test scores",
+    "test summaries contain one fixed fit per model",
+    "frozen selection predates saved test scoring",
+    "notebook schema and absence of saved error outputs checked"
+  ],
+  "fold_records": 240,
+  "initial_trials": 48,
+  "selected_configs": 3,
+  "max_oof_prediction_absolute_error": 0.0,
+  "max_objective_absolute_error": 1.1102230246251565e-16,
+  "all_polynomial_fits_converged": true,
+  "max_polynomial_objective_gap_to_reference": 9.222483887683097e-14
+}

@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-02",
+  "optimizer": "adam",
+  "optimizer_source": "Part b overall CV pick, validation_picks.csv",
+  "part_b_pick": {
+    "run_id": "run_20",
+    "architecture": "[1, 100, 100, 1]",
+    "optimizer": "adam",
+    "gamma": 0.001,
+    "epochs": 1000,
+    "seed": 2026,
+    "folds": 5,
+    "status": "fixed_epoch_limit",
+    "train_mse": 0.0096715069246839,
+    "cv_mse": 0.0098961363194293,
+    "cv_sd": 0.0007987180543552,
+    "cv_seconds": 43.43972728960216,
+    "overall_validation_pick": true
+  },
+  "activations": [
+    "sigmoid",
+    "relu",
+    "leaky_relu"
+  ],
+  "depths": [
+    1,
+    2
+  ],
+  "widths": [
+    25,
+    50,
+    100
+  ],
+  "rates": [
+    0.0003,
+    0.001,
+    0.003
+  ],
+  "epochs": 1000,
+  "batch_size": 32,
+  "seed": 2026,
+  "fold_seed": 42,
+  "folds": 5,
+  "leaky_relu_slope": 0.01,
+  "relu_derivative_at_zero": 0.0,
+  "leaky_relu_derivative_at_zero": 0.01,
+  "hidden_initialization": {
+    "sigmoid": "xavier_normal",
+    "relu": "he_normal",
+    "leaky_relu": "he_normal"
+  },
+  "linear_output_initialization": "xavier_normal",
+  "bias_initialization": "zero",
+  "loss": "full unregularized MSE",
+  "dtype": "float64",
+  "pick_rule": "lowest mean validation MSE per activation/depth/width, all five folds required",
+  "gap": "paired validation MSE minus training MSE, sample SD ddof=1",
+  "fold_spread": "sample SD, not seed uncertainty or a confidence interval",
+  "test_use": "outer test indices excluded, no test prediction or scoring in Part c",
+  "convergence": "fixed epoch limit, no early stopping or convergence assertion",
+  "implementation_sha256": "56f8997a1c1245154dc1019804190f510d29c5c456d3c98214ea1b657f536bc1",
+  "dependencies": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pandas": "2.3.3",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2",
+    "scikit-learn": "1.9.1",
+    "jax": "0.11.2",
+    "jaxlib": "0.11.2"
+  },
+  "rerun": ".venv/bin/python Code/run_part_c.py from the project root"
+}

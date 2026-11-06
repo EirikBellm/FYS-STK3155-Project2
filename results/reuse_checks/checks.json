@@ -1,0 +1,44 @@
+{
+  "checks_passed": [
+    "JAX agreement: sigmoid, mse, layers=[3]",
+    "JAX agreement: sigmoid, mse, layers=[4, 3]",
+    "JAX agreement: sigmoid, mse, layers=[4, 5, 3]",
+    "JAX agreement: sigmoid, cross_entropy, layers=[3]",
+    "JAX agreement: sigmoid, cross_entropy, layers=[4, 3]",
+    "JAX agreement: sigmoid, cross_entropy, layers=[4, 5, 3]",
+    "JAX agreement: relu, mse, layers=[3]",
+    "JAX agreement: relu, mse, layers=[4, 3]",
+    "JAX agreement: relu, mse, layers=[4, 5, 3]",
+    "JAX agreement: relu, cross_entropy, layers=[3]",
+    "JAX agreement: relu, cross_entropy, layers=[4, 3]",
+    "JAX agreement: relu, cross_entropy, layers=[4, 5, 3]",
+    "Finite extreme-logit CE and gradient",
+    "Linear network recovers matching-feature closed-form OLS",
+    "gd: training loss falls, final small batch supported",
+    "rmsprop: training loss falls, final small batch supported",
+    "adam: training loss falls, final small batch supported",
+    "Own zero-hidden softmax baseline learns a tiny three-class example",
+    "sklearn clone, Pipeline fit and scalar prediction interface",
+    "Project 1 OLS/Ridge saved five-fold CV means reconstructed",
+    "Nonzero penalty strength without a penalty type rejected",
+    "One-dimensional target broadcasting rejected",
+    "Extracted Project 1 gradient helper and Week 43 BCE checked"
+  ],
+  "benchmark_reconstruction": [
+    {
+      "model": "ols",
+      "reconstructed_cv_mse": 0.010455486521445762,
+      "saved_cv_mse": 0.010455486521445762,
+      "folds": 5,
+      "seed": 42
+    },
+    {
+      "model": "ridge",
+      "reconstructed_cv_mse": 0.012994018462266601,
+      "saved_cv_mse": 0.012994018462266601,
+      "folds": 5,
+      "seed": 42
+    }
+  ],
+  "scope": "Small verification only, no MNIST test scoring or final NN experiments"
+}

@@ -1,0 +1,32 @@
+{
+  "config": {
+    "id": "trial_01",
+    "hidden": [
+      32,
+      32
+    ],
+    "activation": "sigmoid",
+    "gamma": 0.00024904749512695437,
+    "penalty": "l2",
+    "lmbd": 2.8307279055666076e-06
+  },
+  "fold": 1,
+  "family": "manual",
+  "epochs_run": 100,
+  "best_epoch": 99,
+  "stopped_early": false,
+  "hit_ceiling": true,
+  "seconds": 44.5332843340002,
+  "cross_entropy": 1.8970210652341724,
+  "accuracy": 0.46958333333333335,
+  "macro_f1": 0.314023747574708,
+  "train_cross_entropy": 1.7771120962668585,
+  "train_accuracy": 0.5048505762093887,
+  "train_macro_f1": 0.3442464137690799,
+  "monitor_cross_entropy": 1.797639324182493,
+  "monitor_accuracy": 0.49700598802395207,
+  "monitor_macro_f1": 0.3406217973243288,
+  "fit_n": 15359,
+  "monitor_n": 3841,
+  "validation_n": 4800
+}

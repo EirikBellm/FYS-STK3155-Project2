@@ -1,0 +1,19 @@
+{
+  "development_images": 159053,
+  "reserved_test_images": 46723,
+  "excluded_blanks": 21,
+  "cv_fits": 80,
+  "search_images": 24000,
+  "manual_search_fits": 60,
+  "logistic_fits": 15,
+  "library_fits": 5,
+  "preprocessing_samples_checked": 124,
+  "max_probability_absolute_error": 1.2212453270876722e-15,
+  "checks": [
+    "exact grouped fold reproduction and class coverage",
+    "all saved fold probabilities and metrics independently reproduced",
+    "unpenalized CE stopping, patience and best-weight restoration",
+    "macro-F1 ranking and development-derived image-exposure epoch budgets",
+    "test publication groups separate and test pixels not needed by CV verification"
+  ]
+}

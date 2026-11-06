@@ -1,0 +1,29 @@
+{
+  "config": {
+    "id": "logistic_2",
+    "hidden": [],
+    "activation": "sigmoid",
+    "gamma": 0.01,
+    "penalty": "none",
+    "lmbd": 0.0
+  },
+  "fold": 0,
+  "family": "logistic",
+  "epochs_run": 23,
+  "best_epoch": 13,
+  "stopped_early": true,
+  "hit_ceiling": false,
+  "seconds": 2.3227454170119017,
+  "cross_entropy": 1.980791952710845,
+  "accuracy": 0.45645833333333335,
+  "macro_f1": 0.36572590308523506,
+  "train_cross_entropy": 1.8324788173007134,
+  "train_accuracy": 0.5055338541666666,
+  "train_macro_f1": 0.452902872192833,
+  "monitor_cross_entropy": 1.8867040251442246,
+  "monitor_accuracy": 0.4934895833333333,
+  "monitor_macro_f1": 0.38836089983671584,
+  "fit_n": 15360,
+  "monitor_n": 3840,
+  "validation_n": 4800
+}

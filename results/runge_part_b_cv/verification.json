@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "120 finite completed network fold fits for 24 settings",
+    "exact sklearn shuffled KFold membership and full validation coverage",
+    "outer test exclusion and disjoint train/validation folds",
+    "all five fold preprocessing statistics match training-only calculations",
+    "all 120 saved fold weights reproduce OOF predictions and fold train/validation MSE",
+    "10 OLS fold predictions checked against independent least-squares fits",
+    "24 grid means and sample SDs checked against fold scores and OOF MSE",
+    "6 per-pair CV minima and final refit predictions verified",
+    "all 8 test scores recomputed from saved predictions",
+    "final preprocessing fitted on exactly 800 outer training rows",
+    "notebook schema, embedded plots, settings JSON and missing-work notes checked"
+  ],
+  "max_gradient_absolute_error": 4.440892098500626e-16,
+  "gradient_arrays_checked": 20,
+  "gradient_entries_checked": 21104,
+  "cv_training_and_scoring_seconds": 605.7531190430745,
+  "network_refit_training_seconds": 34.86868799920194
+}

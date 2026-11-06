@@ -1,0 +1,19 @@
+{
+  "selection_basis": "Project 1 historical five-fold validation, converged Lasso candidates only",
+  "ridge": {
+    "model": "ridge",
+    "degree": 14,
+    "lmbd": 1e-06,
+    "historical_cv_mse": 0.011844303896255494
+  },
+  "lasso": {
+    "model": "lasso",
+    "degree": 6,
+    "lmbd": 0.0001,
+    "historical_cv_mse": 0.018024466852025845
+  },
+  "source_records": [
+    "prior_work_2026-10-27/project1/results/part_d_best_by_k.csv",
+    "prior_work_2026-10-27/project1/results/part_i_common_cv.csv"
+  ]
+}

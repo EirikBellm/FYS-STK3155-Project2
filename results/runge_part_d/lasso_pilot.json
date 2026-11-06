@@ -1,0 +1,9 @@
+{
+  "seconds": 6.100867999950424,
+  "iterations": 1693,
+  "converged": true,
+  "objective": 0.01770007208949019,
+  "reference_objective": 0.01770007208941709,
+  "max_prediction_error": 9.992321733376386e-07,
+  "reference_dual_gap": 8.868600298583829e-14
+}

@@ -1,0 +1,13 @@
+{
+  "gradient_arrays": 180,
+  "entries": 280233,
+  "max_gradient_error": 6.938893903907228e-17,
+  "24_class_output": true,
+  "old_training_path_bitwise_equal": true,
+  "checked_training_batch_sizes": [
+    128,
+    13
+  ],
+  "forced_patience_and_best_restore": true,
+  "network_sha256": "770b1d67e5846f20207d397b844b223cd45882d2df2669ed8f7a9cab9657c0f2"
+}
